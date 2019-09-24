@@ -15,7 +15,7 @@ params = {'N_units': 30,    #  Latent space dimension
 
 BUFFER_SIZE = 60000 # Buffer for batch shuffle
 
-data = hdf5storage.loadmat('../output_meshes_labeled_om.mat') # Load dataset
+data = hdf5storage.loadmat('../coma_data_om.mat') # Load dataset
 pix = data['meshes'] # Vertices of the meshes
 
 train_images = pix.reshape(pix.shape[0], pix.shape[1], 3).astype('float32')
