@@ -1,14 +1,228 @@
-\documentclass{article}
-\usepackage[utf8]{inputenc}
+% ---------------------------------------------------------------------------
+% Author guideline and sample document for EG publication using LaTeX2e input
+% D.Fellner, v1.14, Nov. 29, 2017
 
-\title{AE\_isospec}
-\author{rmarinvr }
-\date{September 2019}
+\documentclass{egpubl}
+\usepackage{eg2019}
 
+% --- for  Annual CONFERENCE
+\ConferenceSubmission   % uncomment for Conference submission
+% \ConferencePaper        % uncomment for (final) Conference Paper
+% \STAR                   % uncomment for STAR contribution
+% \Tutorial               % uncomment for Tutorial contribution
+% \ShortPresentation      % uncomment for (final) Short Conference Presentation
+% \Areas                  % uncomment for Areas contribution
+% \MedicalPrize           % uncomment for Medical Prize contribution
+% \Education              % uncomment for Education contribution
+% \Poster                 % uncomment for Poster contribution
+% \DC                     % uncomment for Doctoral Consortium
+%
+% --- for  CGF Journal
+% \JournalSubmission    % uncomment for submission to Computer Graphics Forum
+% \JournalPaper         % uncomment for final version of Journal Paper
+%
+% --- for  CGF Journal: special issue
+% \SpecialIssueSubmission    % uncomment for submission to , special issue
+% \SpecialIssuePaper         % uncomment for final version of Computer Graphics Forum, special issue
+%                          % EuroVis, SGP, Rendering, PG
+% --- for  EG Workshop Proceedings
+% \WsSubmission      % uncomment for submission to EG Workshop
+% \WsPaper           % uncomment for final version of EG Workshop contribution
+% \WsSubmissionJoint % for joint events, for example ICAT-EGVE
+% \WsPaperJoint      % for joint events, for example ICAT-EGVE
+% \Expressive        % for SBIM, CAe, NPAR
+% \DigitalHeritagePaper
+% \PaperL2P          % for events EG only asks for License to Publish
+
+% --- for EuroVis 
+% for full papers use \SpecialIssuePaper
+% \STAREurovis   % for EuroVis additional material 
+% \EuroVisPoster % for EuroVis additional material 
+% \EuroVisShort  % for EuroVis additional material
+%
+ \electronicVersion % can be used both for the printed and electronic version
+
+% !! *please* don't change anything above
+% !! unless you REALLY know what you are doing
+% ------------------------------------------------------------------------
+
+% for including postscript figures
+% mind: package option 'draft' will replace PS figure by a filname within a frame
+\ifpdf \usepackage[pdftex]{graphicx} \pdfcompresslevel=9
+\else \usepackage[dvips]{graphicx} \fi
+
+\PrintedOrElectronic
+
+% prepare for electronic version of your document
+\usepackage{t1enc,dfadobe}
+
+\usepackage{egweblnk}
+\usepackage{cite}
+
+\usepackage{amscd} 
+
+\usepackage{amsfonts} %per R numeri reali
+\usepackage{amsmath} 
+\usepackage{amssymb}  
+
+% For backwards compatibility to old LaTeX type font selection.
+% Uncomment if your document adheres to LaTeX2e recommendations.
+% \let\rm=\rmfamily    \let\sf=\sffamily    \let\tt=\ttfamily
+% \let\it=\itshape     \let\sl=\slshape     \let\sc=\scshape
+% \let\bf=\bfseries
+
+% end of prologue
+\usepackage[utf8x]{inputenc}
+
+\usepackage{overpic}
+%\usepackage{pgfplots}
+%\usepackage{pgf,tikz}
+
+\usepackage{bm}
+\usepackage{wrapfig}
+
+\renewcommand{\S}{\mathcal{S}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\FM}{\mathcal{F}(\M,\mathbb{R})}
+\newcommand{\FN}{\mathcal{F}(\N,\mathbb{R})}
+\newcommand{\LM}{L^2(\M)}
+\newcommand{\LN}{L^2(\N)}
+\newcommand{\Cgt}{\mathbf{C_{gt}}}
+\newcommand{\tCgt}{\widetilde{\mathbf{C_{gt}}}}
+\newcommand{\tphi}{\widetilde{\phi}}
+\newcommand{\tvarphi}{\widetilde{\varphi}}
+\newcommand{\tPhi}{\widetilde{\boldsymbol{\Phi}}}
+\newcommand{\tpsi}{\widetilde{\psi}}
+\newcommand{\tPsi}{\widetilde{\boldsymbol{\Psi}}}
+\newcommand{\talpha}{\widetilde{\alpha}}
+\newcommand{\tbeta}{\widetilde{\beta}}
+\newcommand{\tindex}{\tilde{i}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\thename}{\textbf{Ours}}
+\newcommand{\argmin}{\underset{x}{\arg\min}}
+\newcommand{\argmini}{\underset{i}{\arg\min}}
+\newcommand{\argmint}{\underset{\bm{T}}{\arg\min}}
+\newcommand{\argminp}{\underset{s,\bm{R},\bm{t}}{\arg\min}}
+\newcommand{\parallelsum}{\mathbin{\!/\mkern-5mu/\!}}
+% ---------------------------------------------------------------------
+% EG author guidelines plus sample file for EG publication using LaTeX2e input
+% D.Fellner, v2.02, Jan 25, 2017
+
+
+\title[AutoEncoder Latent Spectrum]%
+      {AutoEncoder Latent Spectrum}
+
+% for anonymous conference submission please enter your SUBMISSION ID
+% instead of the author's name (and leave the affiliation blank) !!
+% for final version: please provide your *own* ORCID in the brackets following \orcid; see https://orcid.org/ for more details.
+\author[paper ID xxx]{{paper ID xxx}
+%\author[D. Fellner \& S. Behnke]
+%{\parbox{\textwidth}{\centering D.\,W. Fellner\thanks{Chairman Eurographics Publications Board}$^{1,2}$\orcid{0000-0001-7756-0901}
+%        and S. Behnke$^{2}$\orcid{0000-0001-5923-423X} 
+%%        S. Spencer$^2$\thanks{Chairman Siggraph Publications Board}  
+%        }
+        \\
+% For Computer Graphics Forum: Please use the abbreviation of your first name.
+%{\parbox{\textwidth}{\centering $^1$TU Darmstadt \& Fraunhofer IGD, Germany\\
+%         $^2$Graz University of Technology, Institute of Computer Graphics and Knowledge Visualization, Austria
+%%        $^2$ Another Department to illustrate the use in papers from authors
+%%             with different affiliations
+%       } 
+%}
+}
+% ------------------------------------------------------------------------
+
+% if the Editors-in-Chief have given you the data, you may uncomment
+% the following five lines and insert it here
+%
+% \volume{36}   % the volume in which the issue will be published;
+% \issue{1}     % the issue number of the publication
+% \pStartPage{1}      % set starting page
+
+
+%-------------------------------------------------------------------------
 \begin{document}
 
-\maketitle
+%\teaser{
+%\begin{center}
+%\begin{overpic}
+%    [trim=0cm 0cm 0cm 0cm,clip,width=\linewidth]{./figures/PIP.png}
+ 
+%    \put(71.5,1){\textbf{final placement in the 3D scene}}    
+    
 
-\section{Introduction}
+%    \end{overpic}
+%    \vspace{0.1cm}
+    
+%    \caption{\label{fig:teaser} .}
+%\end{center}
+% \includegraphics[width=\linewidth]{./figures/trailer.pdf}
+%\centering
+%  \caption{teaser}
+%\label{fig:teaser}
+%}
+
+\maketitle
+%-------------------------------------------------------------------------
+\begin{abstract}
+%-------------------------------------------------------------------------
+%  ACM CCS 1998
+%  (see http://www.acm.org/about/class/1998)
+% \begin{classification} % according to http:http://www.acm.org/about/class/1998
+% \CCScat{Computer Graphics}{I.3.3}{Picture/Image Generation}{Line and curve generation}
+% \end{classification}
+%-------------------------------------------------------------------------
+%  ACM CCS 2012
+%   (see http://www.acm.org/about/class/class/2012)
+%The tool at \url{http://dl.acm.org/ccs.cfm} can be used to generate
+% CCS codes.
+\begin{CCSXML}
+<ccs2012>
+<concept>
+<concept_id>10010147.10010371.10010352.10010381</concept_id>
+<concept_desc>Computing methodologies~Collision detection</concept_desc>
+<concept_significance>300</concept_significance>
+</concept>
+<concept>
+<concept_id>10010583.10010588.10010559</concept_id>
+<concept_desc>Hardware~Sensors and actuators</concept_desc>
+<concept_significance>300</concept_significance>
+</concept>
+<concept>
+<concept_id>10010583.10010584.10010587</concept_id>
+<concept_desc>Hardware~PCB design and layout</concept_desc>
+<concept_significance>100</concept_significance>
+</concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Computing methodologies~Shape modeling}
+\ccsdesc[300]{Mathematics of computing~Functional analysis}
+\ccsdesc[100]{Computing methodologies~Shape analysis}
+
+\printccsdesc   
+\end{abstract}  
+
+%-------------------------------------------------------------------------
+\input{./sections/introduction}
+\input{./sections/related}
+\input{./sections/background}
+\input{./sections/method}
+\input{./sections/results}
+\input{./sections/conclusion}
+
+%\section*{Acknowledgments}
+%
+
+%-------------------------------------------------------------------------
+
+%\bibliographystyle{eg-alpha}
+\bibliographystyle{eg-alpha-doi}
+
+\bibliography{egbibsample}
+
+
 
 \end{document}
