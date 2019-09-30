@@ -19,11 +19,55 @@ The space of spectra is a latent space and the idea is to consider a couple of n
 The scheme can be depicted as in the Figure \ref{fig:sketch}: in this setting, we could optimize w.r.t. different losses:
 \begin{itemize}
     \item $|| D(E(S)) -S ||$ for the autoencoder.
-\item $|| N1(e) - v ||$ the connection between the latent spaces in the first direction
-\item $|| N2(v) - e ||$ the connection between the latent spaces in the second direction
-\item $|| N1(N2(Id)) - Id ||$ consistency (also the inverse can be considered)
-a good alternative for $N2$ could be $SPEC(D)$ i.e. $||SPEC(D(v)) - e ||$.
-
+    \item $|| N1(e) - v ||$ for the connection between the latent spaces in the first direction (from $e$ to $v$)
+    \item $|| N2(v) - e ||$ for the connection between the latent spaces in the second direction (from $v$ to $e$)
+    \item $|| N1(N2(Id)) - Id ||$ consistency (also the inverse can be considered)
+    \item a good alternative for $N2$ could be $SPEC(D)$ i.e. $||SPEC(D(v)) - e ||$. \red{Is this an alternative for $D$? $|| N2(v) - SPEC(D) || $ with $D$ given ?}
 \end{itemize}
 In this way we could obtain a tool for isopsectralization, for instance, $D(N1)$ is a generator of shapes from the spectrum. 
 Through $N1$ and $N2$ we can optimize the value of $v$ in the latent space of the autoencoder to find a shape that as the desired spectrum $N2(v)$.
+\subsection{Week 23-30 September}
+ \begin{figure*}[h]
+ \begin{center}
+  \begin{overpic}
+  [trim=0cm 0cm 0cm 0cm,clip,width=\linewidth]{figures/N1N2.pdf}
+
+  \end{overpic}
+      \caption{Implementation of the network.}
+    \label{fig:sketch}
+\end{center}
+\end{figure*}
+\red{In this week we have implemented a first version of the network. From some experiments, it looks that $N1$ and $N2$ could not be too much simple (e.g. single layer, 150 neurons with tanh activation ends to collapse). The dataset considered is the CoMa, without the disconnected components of the eyes (i.e. 3931 vertices). At the moment I am using the following hyper-parameters:
+\begin{itemize}
+    \item Latent Space: 30 units
+    \item Learning rate: $1e-4$ for encoder-decoder; $4e-4$ or $8e-4$ for $N1$ and $N2$
+    \item Batch Size: $512$
+    \item Epochs: $1000$
+    \item Eigenvalues: the first $30$
+\end{itemize}
+While $N1$ and $N2$ need some stabilization, you can see some results for $N2$ in Figure \ref{fig:resN2}.\\
+Points to discuss:
+\begin{itemize}
+    \item Should $N1$ and $N2$ be trained together to the encoder, or separately?
+    \item Should we consider $e$ as the eingenvalues of the meshes outputted by the decoder, instead of the train dataset?
+    \item Regularization of the loss (e.g. weighting the eigenvalues)
+    \item Exploit eigenvalues hierarchy to build the networks
+\end{itemize}
+}
+
+ \begin{figure*}[h]
+ \begin{center}
+  \begin{overpic}
+  [trim=0cm 0cm 0cm 0cm,clip,width=\linewidth]{figures/N2_loss_compressed.pdf}
+  \put(8, 32){\footnotesize{Train Set}}
+    \put(8,21){\footnotesize{Test Set}}
+    \put(15,-1){\footnotesize{v}}
+    \put(50,-1){N2(v)}
+    \put(85,-1){e}
+  \end{overpic}
+      \caption{An example of result of the training $N2$ and encoder together. The scatters show \textbf{only} over the training set}
+    \label{fig:resN2}
+\end{center}
+\end{figure*}
+
+
