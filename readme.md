@@ -1,8 +1,9 @@
 # Instant recovery of shape from spectrum via latentspace connections
 
 This repository is the official implementation of [Instant recovery of shape from spectrum via latentspace connections](https://arxiv.org/abs/2030.12345). 
+<p align="center">
+<img src="figures/teaser.png" width="400" height="380">
 
-![Screenshot](./figures/teaser.png)
 
 ## Requirements
 
