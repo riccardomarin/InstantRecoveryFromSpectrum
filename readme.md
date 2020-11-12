@@ -2,59 +2,70 @@
 
 This repository is the official implementation of [Instant recovery of shape from spectrum via latentspace connections](https://arxiv.org/abs/2030.12345). 
 
-![Screenshot](teaser.png)
+![Screenshot](./figures/teaser.png)
 
 ## Requirements
 
 To install requirements:
 
 ```setup
-pip install -r requirements.txt
+pip install -r ./code/requirements.txt
 ```
-
->📋  Describe how to set up the environment, e.g. pip/conda/docker commands, download datasets, etc...
 
 ## Training
 
-To train the model(s) in the paper, run this command:
+To train the model with FC encoder:
 
-```train
-python train.py --input-data <path_to_data> --alpha 10 --beta 20
+```train_FC
+python ./code/train_dense.py
 ```
 
->📋  Describe how to train the models, with example commands on how to train the models in your paper, including the full training procedure and appropriate hyperparameters.
+To train the model with PointNet encoder:
+```train_PNet
+python ./code/train_pointnet.py
+```
+
+The code is tested on:
+Python 3.6
+Tensorflow 2.0
+
+## Pretrained models
+To download the pretrained models:
+
+```downlaod_pretrained
+python ./models/download_pretrained.py
+```
+To download the datas:
+```downlaod_pretrained
+python ./models/download_data.py
+```
 
 ## Evaluation
 
-To evaluate my model on ImageNet, run:
+To replicate the shape from spectrum:
 
-```eval
-python eval.py --model-file mymodel.pth --benchmark imagenet
+```eval_sfs
+python eval_dense.py
+```
+The expected result on pre-trained model is:
+
+         OUR         NN
+full| 1.61e-05 |  4.47e-05
+1000| 1.61e-05 |  4.63e-05
+500 | 1.71e-05 |  4.01e-05
+200 | 2.13e-05 |  2.65e-05
+
+To replicate the spectrum from pointcloud on a FLAME shape:
+```eval_sfp
+python eval_dense.py
 ```
 
->📋  Describe how to evaluate the trained models on benchmarks reported in the paper, give commands that produce the results (section below).
+The expected result on pre-trained model is:
+![Screenshot](./figures/pnet_flame.png)
 
-## Pre-trained Models
+## Citation
+If you use our work, please cite our paper.
 
-You can download pretrained models here:
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 
-- [My awesome model](https://drive.google.com/mymodel.pth) trained on ImageNet using parameters x,y,z. 
-
->📋  Give a link to where/how the pretrained models can be downloaded and how they were trained (if applicable).  Alternatively you can have an additional column in your results table with a link to the models.
-
-## Results
-
-Our model achieves the following performance on :
-
-### [Image Classification on ImageNet](https://paperswithcode.com/sota/image-classification-on-imagenet)
-
-| Model name         | Top 1 Accuracy  | Top 5 Accuracy |
-| ------------------ |---------------- | -------------- |
-| My awesome model   |     85%         |      95%       |
-
->📋  Include a table of results from your paper, and link back to the leaderboard for clarity and context. If your main result is a figure, include that figure and link to the command or notebook to reproduce it. 
-
-
-## Contributing
-
->📋  Pick a licence and describe how to contribute to your code repository. 
+This work is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/). For any commercial uses or derivatives, please contact us.

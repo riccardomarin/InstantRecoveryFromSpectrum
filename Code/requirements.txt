@@ -1,6 +1,6 @@
-numpy
+numpy==1.18
 scipy
-tensorflow-gpu==2.0.0-beta1 
-tf-nightly-gpu-2.0-preview
-open3d-python
+tensorflow==2.0
+open3d
+matplotlib
 hdf5storage
