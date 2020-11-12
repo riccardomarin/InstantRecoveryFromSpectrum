@@ -49,15 +49,16 @@ python eval_dense.py
 ```
 The expected result on pre-trained model is:
 
-         OUR         NN
-full| 1.61e-05 |  4.47e-05
-1000| 1.61e-05 |  4.63e-05
-500 | 1.71e-05 |  4.01e-05
-200 | 2.13e-05 |  2.65e-05
+|           | Our  | NN |
+| ------------------ |---------------- | -------------- |
+| full | 1.61e-05 |  4.47e-05 |
+| 1000 | 1.61e-05 |  4.63e-05 |
+| 500 | 1.71e-05 |  4.01e-05 |
+| 200 | 2.13e-05 |  2.65e-05 |
 
 To replicate the spectrum from pointcloud on a FLAME shape:
 ```eval_sfp
-python eval_dense.py
+python eval_pointnet.py
 ```
 
 The expected result on pre-trained model is:
