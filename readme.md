@@ -63,7 +63,8 @@ python eval_pointnet.py
 ```
 
 The expected result on pre-trained model is:
-![Screenshot](./figures/pnet_flame.png)
+
+<img src="figures/pnet_flame.png" width="320" height="240">
 
 ## Citation
 If you use our work, please cite our paper.
