@@ -38,7 +38,7 @@ python ./models/download_pretrained.py
 ```
 To download the datas:
 ```downlaod_pretrained
-python ./models/download_data.py
+python ./data/download_data.py
 ```
 
 ## Evaluation
