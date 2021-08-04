@@ -67,8 +67,28 @@ The expected result on pre-trained model is:
 <img src="figures/pnet_flame.png" width="320" height="240">
 
 ## Citation
-If you use our work, please cite our paper.
+If you use our work, please cite our papers.
 
+```
+@article{marin2021spectral,
+title={Spectral Shape Recovery and Analysis Via Data-driven Connections},
+author={Marin, Riccardo and Rampini, Arianna and Castellani, Umberto and Rodol{\`a}, Emanuele and Ovsjanikov, Maks and Melzi, Simone},
+journal={International Journal of Computer Vision},
+pages={1--16},
+year={2021},
+publisher={Springer}
+}
+
+@inproceedings{marin2020instant,
+title={Instant recovery of shape from spectrum via latent space connections},
+author={Marin, Riccardo and Rampini, Arianna and Castellani, Umberto and Rodola, Emanuele and Ovsjanikov, Maks and Melzi, Simone},
+booktitle={2020 International Conference on 3D Vision (3DV)},
+pages={120--129},
+year={2020},
+organization={IEEE}
+}
+  
+```
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 
 This work is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/). For any commercial uses or derivatives, please contact us.
