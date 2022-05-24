@@ -1,6 +1,6 @@
 numpy==1.18
 scipy
-tensorflow==2.0
+tensorflow==2.6.4
 open3d
 matplotlib
 hdf5storage
